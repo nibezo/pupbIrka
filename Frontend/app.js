@@ -7,7 +7,6 @@ fetch("http://127.0.0.1:8000/")
         // Add to post variable class .post
         post.classList.add("post")
         post.textContent = data.message;
-        console.log(post);
         document.getElementById('main').appendChild(post);
     }
 );
