@@ -19,7 +19,7 @@ export default {
       const data = { message: this.inputText };
       try {
         const response = await axios.post('http://localhost:8000/message', data);
-        console.log(response.data);
+        console.log(response);
         // Do something with the response from the server
       } catch (error) {
         console.error(error);
