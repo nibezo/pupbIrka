@@ -9,11 +9,12 @@ origins = [
     "http://localhost:8000",
     "http://localhost:5500",
     "http://127.0.0.1:5500",
+    "http://127.0.0.1:5173",
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -23,3 +24,9 @@ app.add_middleware(
 @app.get("/")
 async def root():
     return {"message": "Hello"}
+
+# Define the endpoint
+@app.post("/message")
+async def receive_message(message: dict):
+    print(f"Received message: {message}")
+    return {"message": "Message received!"}
