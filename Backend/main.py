@@ -1,25 +1,11 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from flask import Flask, request, Response
+import json
+from flask_cors import CORS
 
-app = FastAPI()
+app = Flask(__name__)
+CORS(app)
 
-# Set up CORS
-origins = [
-    "http://localhost",
-    "http://localhost:8000",
-    "http://localhost:5500",
-    "http://127.0.0.1:5500",
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-
-@app.get("/")
-async def root():
-    return {"message": "Hello"}
+@app.route("/", methods=["GET"])
+def root():
+    return Response(json.dumps({"message": "Hello"}),
+                    status=200, mimetype='application/json')

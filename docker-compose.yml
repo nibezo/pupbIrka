@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  pupblrka-back:
+      container_name: pupblrka-back
+      user: "${DOCKER_UID}:${DOCKER_GID}"
+#      env_file: .env
+      build:
+        dockerfile: Backend/Dockerfile
+      command: gunicorn --bind 0.0.0.0:5000 wsgi:app
+      ports:
+        - "1212:5000"
+#networks:
+#  default:
+#    external:
+#      name: SKCnetwork
